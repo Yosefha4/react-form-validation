@@ -1,0 +1,13 @@
+
+/* .formInput{
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: right;
+} */
+
+
+input{
+    padding: 15px;
+    margin: 10px 0px;
+    text-align: right;
+}

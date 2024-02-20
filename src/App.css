@@ -1,0 +1,82 @@
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 650px;
+  flex-direction: column;
+  border: 3px solid black;
+  padding: 24px 32px;
+  border-radius: 5px;
+}
+.container h3 {
+  text-align: right;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.genderbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 18px;
+}
+.genderInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 2px 18px;
+}
+
+.formInput span {
+  text-align: right;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 24px;
+}
+.btn {
+  padding: 4px 12px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.errorHide {
+  display: none;
+  font-size: 13px;
+  color: rgb(255, 0, 0);
+  background-color: rgb(247, 253, 125);
+}
+.errorShow {
+  display: block;
+  font-size: 13px;
+  color: rgb(255, 0, 0);
+  background-color: rgb(247, 253, 125);
+}
