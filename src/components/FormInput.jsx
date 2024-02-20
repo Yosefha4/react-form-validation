@@ -11,7 +11,7 @@ console.log("errorState : " , errorState)
     
     <div className='formInput'>
         <span>{props.label}</span>
-        <input type={props.type} name={props.name} placeholder={props.placeholder} onChange={e => props.changeFunc(e.target.value)} required />
+        <input minLength={2} type={props.type} name={props.name} placeholder={props.placeholder} onChange={e => props.changeFunc(e.target.value)} required />
       <span style={{textAlign:'center'}} className={errorState}>{props.errorMessage}</span>
     </div>
     

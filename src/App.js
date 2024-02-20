@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import "./App.css";
 import FormInput from "./components/FormInput";
 
@@ -10,17 +11,46 @@ function App() {
   const [userGender, setUserGender] = useState("לא מסומן");
 
   const [errorInputMsg, setErrorInputMsg] = useState({
-     userFirst: false ,
-    userLast:false ,
-     userId: false ,
-    userEmail: false ,
-});
+    userFirst: false,
+    userLast: false,
+    userId: false,
+    userEmail: false,
+  });
 
+  useEffect(()=>{
+    validateInputs();
+  },[userFirstName,userLastName,userId,userEmail])
 
   const validateInputs = () => {
     //Regular expr to check the ID
     const idRegex = /^\d{9}$/;
 
+    // Update errorInputMsg state based on validation results
+    setErrorInputMsg((prevState) => ({
+      ...prevState,
+      userFirst: userFirstName.length < 3 || userFirstName.length > 11,
+      userLast: userLastName.length < 3 || userLastName.length > 11,
+      userId: !idRegex.test(userId),
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Regular expr to check the ID
+  const idRegex = /^\d{9}$/;
+
+  // Check if all inputs are valid
+  const isValid =
+    userFirstName.length >= 3 &&
+    userFirstName.length <= 11 &&
+    userLastName.length >= 3 &&
+    userLastName.length <= 11 &&
+    idRegex.test(userId);
+
+  if (isValid) {
+    // All inputs are valid, show alert
+    alert("All inputs are valid!");
+  } else {
     // Update errorInputMsg state based on validation results
     setErrorInputMsg(prevState => ({
       ...prevState,
@@ -28,15 +58,7 @@ function App() {
       userLast: userLastName.length < 3 || userLastName.length > 11,
       userId: !idRegex.test(userId)
     }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validateInputs();
-    if(!errorInputMsg.userFirst && !errorInputMsg.userLast  && !errorInputMsg.userEmail &&!errorInputMsg.userId){
-      alert(" Hey " + userFirstName + " " + userLastName + " Email: " + userEmail + " ID : " + userId + " Gender : " +userGender)
-    }
-
+  }
   };
 
   const handleResetData = () => {
@@ -71,7 +93,6 @@ function App() {
             changeFunc={setUserFirstName}
             errorMessage={"מחרוזת חייבת להיות יותר מ-3 תווים ועד - 10"}
             errFlag={errorInputMsg.userFirst}
-
           />
         </div>
         <div className="form-row">
@@ -83,7 +104,6 @@ function App() {
             changeFunc={setUserId}
             errorMessage="מספר זהות לא חוקי"
             errFlag={errorInputMsg.userId}
-
           />
           <FormInput
             type="email"
@@ -93,7 +113,6 @@ function App() {
             changeFunc={setUserEmail}
             errorMessage="כתובת אימייל לא תקינה"
             errFlag={errorInputMsg.userEmail}
-
           />
         </div>
         <h3>מין</h3>
