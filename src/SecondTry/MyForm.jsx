@@ -7,6 +7,7 @@ const MyForm = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userId, setUserId] = useState("");
   const [userBday, setUserBday] = useState(new Date());
+  const [userGender, setUserGender] = useState("other");
 
   const [errorState, setErrorState] = useState({
     userNameState: true,
@@ -31,14 +32,24 @@ const MyForm = () => {
     ) {
       currentAge--;
     }
-    return currentAge >= 18 ;
+    return currentAge >= 18;
   };
+
+  const isValid =
+    errorState.userNameState &&
+    errorState.userEmailState &&
+    errorState.userIDState &&
+    errorState.userBdayState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     changeFormValidate();
-    console.log(validateUserAge());
-    // alert("Click!" + userName + " + " + userEmail)
+    if (isValid) {
+      if (userName !== "" && userEmail !== "" && userId !== "") {
+        const alertMessage = `All inputs are valid!\n\nUser Name: ${userName}\nUser Email: ${userEmail}\nUser Birth Date: ${userBday.toString()}\n User Gender: ${userGender}`;
+        alert(alertMessage);
+      }
+    }
   };
 
   const changeFormValidate = () => {
@@ -89,9 +100,20 @@ const MyForm = () => {
         inpuType="Date"
         placeholder="Enter User B-Day"
         changeFunc={setUserBday}
-        errorMsg="Invalid User B-Day"
+        errorMsg="User must be 18+"
         errFlag={errorState.userBdayState}
       />
+
+      <div className="genderInp">
+        <div className="genderItem">
+          <label htmlFor="male">Male</label>
+          <input type="radio" name="userGender" id="male" value="male" onChange={e => setUserGender(e.target.value)} />
+        </div>
+        <div className="genderItem">
+          <label htmlFor="male">Female</label>
+          <input type="radio" name="userGender" id="female" value="female"  onChange={e => setUserGender(e.target.value)} />
+        </div>
+      </div>
 
       <button type="submit">Submit</button>
     </form>

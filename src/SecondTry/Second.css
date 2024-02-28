@@ -85,3 +85,20 @@ form button:hover{
     font-size: 14px;
     font-weight: bold;
 }
+
+.genderInp{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 18px;
+}
+.genderInp .genderItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    gap: 4px;
+    /* border: 1px solid black; */
+    border-radius: 15px;
+}
